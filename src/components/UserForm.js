@@ -12,11 +12,10 @@ class UserForm extends Component {
         text: ''
     }
 
-    handleChange = (ev, filed) => {
+    handleChange = (ev, field) => {
         const {value} = ev.target;
-        console.log(filed);
         this.setState({
-            [filed]: value.length < 100 ? value : this.state.user
+            [field]: value.length < 100 ? value : this.state.user
         })
     };
 

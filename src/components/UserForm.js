@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import './UserForm.css';
 
 class UserForm extends Component {
     static propTypes = {
@@ -7,22 +8,40 @@ class UserForm extends Component {
     };
 
     state = {
-        user: ''
+        user: '',
+        text: ''
     }
 
     handleChange = ev => {
-        const {value} = ev.target
+        const {value} = ev.target;
         this.setState({
-            user: value.length < 15 ? value : ''
+            user: value.length < 100 ? value : this.state.user
         })
-    }
+    };
+
+    handleChangeText = (ev) => {
+	    const {value} = ev.target;
+	    this.setState({
+		    text: value.length < 100 ? value : this.state.text
+	    })
+    };
 
     render() {
         console.log('---', this.state)
+        const {user, text} = this.state;
+	      const userValid = !((0 < user.length) && (user.length < 10));
+	      const textValid = !((0 < text.length) && (text.length < 20));
         return (
-            <div>
-                Username: <input value = {this.state.user} onChange = {this.handleChange} />
-            </div>
+            <form>
+                <div>
+                    Username: <input value = {user} onChange = {this.handleChange} className={!userValid ? 'input--invalid': ''}/>
+                    {!userValid? <div className="error">Имя должно быть больше 10 символов</div>:''}
+                </div>
+                <div>
+                    Text: <textarea name="text" id="text" onChange = {this.handleChangeText} value={text}/>
+	                  {!textValid? <div className="error">Текст должен быть больше 20 символов</div>:''}
+                </div>
+            </form>
         )
     }
 }

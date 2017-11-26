@@ -12,18 +12,20 @@ class UserForm extends Component {
         text: ''
     }
 
-    handleChange = ev => {
+    handleChange = (ev, filed) => {
         const {value} = ev.target;
+        console.log(filed);
         this.setState({
-            user: value.length < 100 ? value : this.state.user
+            [filed]: value.length < 100 ? value : this.state.user
         })
     };
 
+    handleChangeUser = (ev) => {
+        this.handleChange(ev, 'user');
+    };
+
     handleChangeText = (ev) => {
-	    const {value} = ev.target;
-	    this.setState({
-		    text: value.length < 100 ? value : this.state.text
-	    })
+	    this.handleChange(ev, 'text');
     };
 
     render() {
@@ -34,7 +36,7 @@ class UserForm extends Component {
         return (
             <form>
                 <div>
-                    Username: <input value = {user} onChange = {this.handleChange} className={!userValid ? 'input--invalid': ''}/>
+                    Username: <input value = {user} onChange = {this.handleChangeUser} className={!userValid ? 'input--invalid': ''}/>
                     {!userValid? <div className="error">Имя должно быть больше 10 символов</div>:''}
                 </div>
                 <div>

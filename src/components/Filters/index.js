@@ -3,17 +3,22 @@ import PropTypes from 'prop-types';
 import DateRange from './DateRange'
 import SelectFilter from './Select'
 import {connect} from 'react-redux'
-import {filter} from '../../AC/index'
+import {filter, filterArticles} from '../../AC/index'
 
 class Filters extends Component {
     static propTypes = {
     };
+
+	filterArticles = () => {
+		return this.props.filterArticles(this.props.filter);
+  }
 
     render() {
         return (
             <div>
                 <SelectFilter articles = {this.props.articles}/>
                 <DateRange filter={this.props.filter} changeFilter={this.props.changeFilter}/>
+                <button onClick={this.filterArticles}>Filter Articles</button>
             </div>
         )
     }
@@ -38,5 +43,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-	changeFilter: filter
+	changeFilter: filter,
+	filterArticles: filterArticles
 })(Filters)

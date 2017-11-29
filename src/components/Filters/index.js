@@ -23,15 +23,18 @@ Filters.defaultProps = {
 	filter: {
 		from: null,
 		to: null
-	}
+	},
+	articles: []
 };
 
 Filters.propTypes = {
-	filter: PropTypes.object.isRequired
+	filter: PropTypes.object.isRequired,
+	articles: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	filter: state.filter
+	filter: state.filter,
+	articles: state.articles
 });
 
 export default connect(mapStateToProps, {

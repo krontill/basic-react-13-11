@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {filter} from '../../AC/index'
 
 import 'react-day-picker/lib/style.css'
 
@@ -28,21 +26,9 @@ class DateRange extends Component {
 
 }
 
-DateRange.defaultProps = {
-	filter: {
-		from: null,
-		to: null
-	}
-};
-
 DateRange.propTypes = {
-	filter: PropTypes.object.isRequired
+	filter: PropTypes.object.isRequired,
+	changeFilter: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-	filter: state.filter
-});
-
-export default connect(mapStateToProps, {
-	changeFilter: filter
-})(DateRange)
+export default DateRange

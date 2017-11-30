@@ -1,4 +1,4 @@
-import {INCREMENT, DELETE_ARTICLE, FILTER} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, FILTER, FILTER_ARTICLES} from '../constants'
 
 export function increment() {
     const action = { type: INCREMENT }
@@ -15,4 +15,11 @@ export function deleteArticle(id) {
 export function filter(newFilter) {
 	const action = { type: FILTER, payload: {newFilter}}
 	return action
+}
+
+export function filterArticles(filter) {
+	return {
+		type: FILTER_ARTICLES,
+		payload: { filter }
+	}
 }

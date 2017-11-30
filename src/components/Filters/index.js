@@ -7,16 +7,17 @@ class Filters extends Component {
     static propTypes = {
     };
 
-	filterArticles = () => {
-		return this.props.filterArticles(this.props.filter);
-  }
+		handlefilterArticles = () => {
+			const {filter, filterArticles} = this.props;
+			filterArticles(filter);
+		};
 
     render() {
         return (
             <div>
                 <SelectFilter articles = {this.props.articles}/>
                 <DateRange filter={this.props.filter} changeFilter={this.props.changeFilter}/>
-                <button onClick={this.filterArticles}>Filter Articles</button>
+                <button onClick={this.handlefilterArticles}>Filter Articles</button>
             </div>
         )
     }
@@ -25,7 +26,8 @@ class Filters extends Component {
 Filters.propTypes = {
 	filter: PropTypes.object.isRequired,
 	articles: PropTypes.array.isRequired,
-	changeFilter: PropTypes.func.isRequired
+	changeFilter: PropTypes.func.isRequired,
+	filterArticles: PropTypes.func.isRequired
 };
 
 export default Filters

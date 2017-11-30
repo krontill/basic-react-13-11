@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import DateRange from './DateRange'
 import SelectFilter from './Select'
-import {connect} from 'react-redux'
-import {filter, filterArticles} from '../../AC/index'
 
 class Filters extends Component {
     static propTypes = {
@@ -24,25 +22,10 @@ class Filters extends Component {
     }
 }
 
-Filters.defaultProps = {
-	filter: {
-		from: null,
-		to: null
-	},
-	articles: []
-};
-
 Filters.propTypes = {
 	filter: PropTypes.object.isRequired,
-	articles: PropTypes.array.isRequired
+	articles: PropTypes.array.isRequired,
+	changeFilter: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-	filter: state.filter,
-	articles: state.articles
-});
-
-export default connect(mapStateToProps, {
-	changeFilter: filter,
-	filterArticles: filterArticles
-})(Filters)
+export default Filters

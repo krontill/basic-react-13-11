@@ -11,26 +11,49 @@ import Menu, {MenuItem} from './Menu'
 
 class App extends Component {
     static childContextTypes = {
-        username: PropTypes.string
+        username: PropTypes.string,
+        dictionary: PropTypes.object,
+        lang: PropTypes.string
     }
 
     getChildContext() {
         return {
-            username: this.state.user
+            username: this.state.user,
+            dictionary: this.state.dictionary,
+            lang: this.state.lang
         }
     }
 
+/*
+    getTranslation = (lang, dictionary, text) => () => {
+        if(lang === 'en') {
+            return text;
+        } else if (lang === 'ru') {
+            return dictionary[text];
+        }
+    };
+*/
+
     state = {
-        user: ''
-    }
+        user: '',
+        lang: 'en',
+        dictionary: {
+            'App name': 'Название приложения',
+            'Main menu': 'Главное меню'
+        }
+    };
 
     handleUserChange = user => this.setState({ user })
 
+    switchLang = (lang) => () => this.setState({lang});
+
     render() {
-        console.log('---', 1)
+        console.log('---', 1, this.state.lang)
         return (
             <div>
-                <h1>App name</h1>
+                <h1>{this.state.lang === 'en' ? 'App name': this.state.dictionary['App name']}</h1>
+                <button onClick={this.switchLang('ru')}>ru</button>
+                <button onClick={this.switchLang('en')}>en</button>
                 <UserForm value = {this.state.user} onChange = {this.handleUserChange}/>
                 <Menu>
                     <MenuItem url="/counter">Counter</MenuItem>

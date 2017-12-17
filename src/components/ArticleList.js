@@ -17,7 +17,7 @@ class ArticleList extends Accordion {
         if (loading) return <Loader />
         if (!articles.length) return <h3>No Articles</h3>
         const articleElements = articles.map((article) => <li key={article.id}>
-            <NavLink activeStyle={{color: 'red'}} to={`/articles/${article.id}`}>{article.title}</NavLink>
+            <NavLink activeStyle={{color: 'red'}} to={`/article/${article.id}`}>{article.title}</NavLink>
         </li>)
         return (
             <ul>

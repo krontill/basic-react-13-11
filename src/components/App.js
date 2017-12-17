@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Route, Switch, NavLink, Redirect} from 'react-router-dom'
 import ArticlesPage from './routes/ArticlesPage'
+import ArticlePage from './routes/ArticlePage'
 import CommentsPage from './routes/CommentsPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
@@ -43,6 +44,7 @@ class App extends Component {
                     <Route path="/filters" component={Filters}/>
                     <Route path="/articles/new" render={() => <h1>New Article</h1>}/>
                     <Route path="/articles" component={ArticlesPage}/>
+                    <Route path="/article/:id" component={ArticlePage}/>
                     <Route path="/comments" component = {CommentsPage}/>
                     <Route path="/error" component = {() => <h1>Oooops!</h1>}/>
                     <Route path="*" render={() => <h1>Not found</h1>}/>

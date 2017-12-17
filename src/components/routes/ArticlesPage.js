@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
 import ArticleList from '../ArticleList'
-import Article from '../Article'
 
 class ArticlesPage extends Component {
     static propTypes = {
@@ -12,16 +10,10 @@ class ArticlesPage extends Component {
         console.log('---', 2)
         return (
             <div>
+                <h1>Please select article</h1>
                 <ArticleList />
-                <Route path={`${this.props.match.path}/:id`} children={this.getArticle}/>
             </div>
         )
-    }
-
-    getArticle = ({ match }) => {
-        if (!match) return <h1>Please select article</h1>
-        console.log('---', 3)
-        return <Article id={match.params.id} isOpen key={match.params.id} />
     }
 }
 
